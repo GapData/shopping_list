@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class=" text-center">Shopping List</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class='text-center'>Items</h3>
+            {% if items %}
+                <ul class="list-group">
+                    {% for item in items %}
+                        <li class="list-group-item">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">{{ item }}</li>
+                                <li class="list-inline-item"><form action="{{ url_for('delete', item=item)}}" method='POST'>
+                                <input class='btn btn-primary btn-sm pull-right' type="submit" value='delete'>
+                            </form></li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>There is nothing in the shopping list.</p>
+            {% endif%}
+        </div>
+        <div class="col-md-6">
+            <h3 class='text-center'>Add Item</h3>
+            <form action="{{ url_for('index') }}" method='POST' class="form-inline">
+                <div class="form-group">
+                    <label for="item">Item</label><input type="text" name='item' class='form-control'>
+                    {# <label for="last_name">Last Name <input type="text" name='last_name'></label><br> #}
+                    <input type="submit" class="btn btn-primary" value='Add Item'>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+.list-item > ul {
+    display: inline;
+    width: 50%;
+}
